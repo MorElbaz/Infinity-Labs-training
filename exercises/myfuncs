@@ -1,0 +1,55 @@
+#
+# gcc compilation aliases: c89, c99, debug mode, release mode
+alias gd='gcc -ansi -pedantic-errors -Wall -Wextra -g -Og'
+alias gc='gcc -ansi -pedantic-errors -Wall -Wextra -DNDEBUG -O3'
+alias gd9='gcc -std=c99 -pedantic-errors Wall -Wextra -g -Og'
+alias gc9='gcc -std=c99 -pedantic-errors Wall -Wextra -DNDEBUG -O3'
+#
+# Valgrind alias
+alias vlg='valgrind -v --leak-check=yes -track-origins=yes'
+#
+# svn aliases: check in, update, log, add ,status
+alias svc="sshpass -p201382199 svn ci -m"
+alias svu="sshpass -p201382199 svn update"
+alias svl="sshpass -p201382199 svn log"
+alias svls="sshpass -p201382199 svn list"
+alias svrm="svn delete"
+alias sva="svn add"
+alias svclc="svn cleanup"
+alias svstt="svn status"
+#
+#my aliases:
+alias inst="sudo apt-get install"
+alias myf="gedit /media/rd48/D6CF-CB21/MIZI/.myfuncs"
+alias myfhome="gedit /media/mor/D6CF-CB21/MIZI/.myfuncs"
+alias ex="cd ~/svn/Proj/src/exercises/"
+
+
+
+function lab()
+{
+ if [ ! -e $1.c ]
+  then
+	cat > $1.c << fin
+#include <stdio.h>
+int main()
+{
+
+	return 0;
+}
+fin
+   fi
+  gedit $1.c
+ if [ -e $1.out ]
+then
+rm $1.out
+fi
+ gd $1.c -o $1.out
+ if [ $2 ]
+  then
+   cgdb ./$1.out
+  else
+   ./$1.out
+ fi
+}
+

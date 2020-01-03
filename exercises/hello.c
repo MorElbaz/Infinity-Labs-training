@@ -1,0 +1,14 @@
+    #include <stdio.h>
+    int main()
+    {
+	int i;
+	int str[] = {0x22, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x20,
+                     0x57, 0x6f, 0x72, 0x6c, 0x64, 0x21, 0x22};
+
+	for(i=0; i<14; i++){
+		printf("%c", str[i]);
+		
+	}
+	printf("\n");
+    return 0;
+    }
